@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolAPI", "SchoolAPI\Scho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{6EC009F9-4CE6-4B01-90F3-012D9EC13462}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{AF97AEAF-8C14-4251-BEA7-E8F13B765343}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6EC009F9-4CE6-4B01-90F3-012D9EC13462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC009F9-4CE6-4B01-90F3-012D9EC13462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC009F9-4CE6-4B01-90F3-012D9EC13462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF97AEAF-8C14-4251-BEA7-E8F13B765343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF97AEAF-8C14-4251-BEA7-E8F13B765343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF97AEAF-8C14-4251-BEA7-E8F13B765343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF97AEAF-8C14-4251-BEA7-E8F13B765343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
