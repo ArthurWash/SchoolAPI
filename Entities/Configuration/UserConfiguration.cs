@@ -14,27 +14,34 @@ namespace Entities.Configuration
                 new User
                 {
                     Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
-                    UserName = "kwilliams",
-                    OrganizationId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870")
+                    UserName = "awash",
+                    Email = "ajw53@njit.edu",
+                    Status = true,
+                    SystemRoleID = "student",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now
                 },
                 new User
                 {
                     Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
-                    UserName = "ka393939",
-                    OrganizationId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870")
+                    UserName = "thupchick",
+                    Email = "tjhupchick24@njit.edu",
+                    Status = false,
+                    SystemRoleID = "student",
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now
                 },
                  new User
                  {
                      Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
-                     UserName = "kaw3939",
-                     OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3")
-                 },
-                 new User
-                 {
-                     Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479812"),
-                     UserName = "awash",
-                     OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3")
+                     UserName = "kwilliams",
+                     Email = "keith.a.williams@njit.edu",
+                     Status = true,
+                     SystemRoleID = "profesor",
+                     CreatedDate = DateTime.Now,
+                     UpdatedDate = DateTime.Now
                  }
+
             );
         }
     }
