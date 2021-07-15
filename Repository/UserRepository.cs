@@ -1,6 +1,9 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Repository
 {
@@ -10,5 +13,13 @@ namespace Repository
             : base(repositoryContext)
         {
         }
+        public IEnumerable<User> GetAllUsers(bool trackChanges) =>
+            FindAll(trackChanges)
+            .OrderBy(c => c.UserName)
+            .ToList();
+
+        public User GetUser(Guid UserId, bool trackChanges) =>
+         FindByCondition(c => c.Id.Equals(UserId), trackChanges)
+        .SingleOrDefault();
     }
 }
