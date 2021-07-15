@@ -13,5 +13,13 @@ namespace Repository
             : base(repositoryContext)
         {
         }
+        public IEnumerable<CourseSectionManagement> GetAllCourseSections(bool trackChanges) =>
+        FindAll(trackChanges)
+        .OrderBy(c => c.CourseID)
+        .ToList();
+
+        public CourseSectionManagement GetCourseSection(Guid CourseSectionID, bool trackChanges) =>
+         FindByCondition(c => c.Id.Equals(CourseSectionID), trackChanges)
+        .SingleOrDefault();
     }
 }
