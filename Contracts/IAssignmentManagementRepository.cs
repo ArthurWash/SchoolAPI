@@ -6,5 +6,7 @@ namespace Contracts
 {
     public interface IAssignmentManagementRepository
     {
+        IEnumerable<AssignmentManagement> GetAllAssignments(bool trackChanges);
+        AssignmentManagement GetAssignment(Guid AssignmentID, bool trackChanges);
     }
 }

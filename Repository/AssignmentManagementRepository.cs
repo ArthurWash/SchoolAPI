@@ -13,5 +13,13 @@ namespace Repository
             : base(repositoryContext)
         {
         }
+        public IEnumerable<AssignmentManagement> GetAllAssignments(bool trackChanges) =>
+        FindAll(trackChanges)
+        .OrderBy(c => c.AssignmentTitle)
+        .ToList();
+
+        public AssignmentManagement GetAssignment(Guid AssignmentID, bool trackChanges) =>
+         FindByCondition(c => c.Id.Equals(AssignmentID), trackChanges)
+        .SingleOrDefault();
     }
 }
