@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace Assignments.Controllers
+namespace SchoolAPI.Controllers
 {
     [Route("api/v1/assignments")]
     [ApiController]

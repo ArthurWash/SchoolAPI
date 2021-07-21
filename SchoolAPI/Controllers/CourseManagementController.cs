@@ -1,11 +1,12 @@
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace CourseManagement.Controllers
+namespace SchoolAPI.Controllers
 {
     [Route("api/v1/courses")]
     [ApiController]
@@ -22,46 +23,93 @@ namespace CourseManagement.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "getAllCourses")]
         public IActionResult GetCourses()
         {
-            try
-            {
-                var courses = _repository.CourseManagement.GetAllCourses(trackChanges: false);
-                return Ok(courses);
-                /*var organizationDto = _mapper.Map<IEnumerable<OrganizationDto>>(organizations);
-                return Ok(organizationDto);*/
+            var courses = _repository.CourseManagement.GetAllCourses(trackChanges: false);
 
-            }
-            catch (Exception ex)
+            var CourseDto = _mapper.Map<IEnumerable<CourseDto>>(courses);
+                //throw new Exception("Exception");
+                return Ok(CourseDto);
+        }
+
+        [HttpGet("{id}", Name = "getCourseById")]
+        public IActionResult GetCourse(Guid id)
+        {
+            var course = _repository.CourseManagement.GetCourse(id, trackChanges: false); if (course == null)
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetCourses)} action {ex}");
-                return StatusCode(500, "Internal server error");
+                _logger.LogInfo($"Course with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            else
+            {
+                var CourseDto = _mapper.Map<CourseDto>(course);
+                return Ok(CourseDto);
             }
         }
-        [HttpGet("{id}")]
-        public IActionResult GetCourses(Guid id)
+ 
+        [HttpPost(Name = "createCourse")]
+        public IActionResult CreateCourse([FromBody]CourseForCreationDto course)
         {
-            try
+            if (course == null)
             {
-                var course = _repository.CourseManagement.GetCourse(id, trackChanges: false); if (course == null)
-                {
-                    _logger.LogInfo($"Course with id: {id} doesn't exist in the database.");
-                    return NotFound();
-                }
-                else
-                {
-                    var CourseDto = _mapper.Map<CourseDto>(course);
-                    return Ok(CourseDto);
-                }
-
+                _logger.LogError("Course ForCreationDto object sent from client is null.");
+                return BadRequest("Course ForCreationDto object is null");
             }
-            catch (Exception ex)
+            if (!ModelState.IsValid)
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetCourses)} action {ex}");
-                return StatusCode(500, "Internal server error");
+                _logger.LogError("Invalid model state for the CourseForCreationDto object");
+                return UnprocessableEntity(ModelState);
             }
 
+            var courseEntity = _mapper.Map<CourseManagement>(course);
+
+            _repository.CourseManagement.CreateCourse(courseEntity);
+            _repository.Save();
+
+            var courseToReturn = _mapper.Map<CourseDto>(courseEntity);
+
+            return CreatedAtRoute("getCourseById", new { id = courseToReturn.Id }, courseToReturn);
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateCourse(Guid id, [FromBody] CourseForUpdateDto course)
+        {
+            if (course == null)
+            {
+                _logger.LogError("CourseForUpdateDto object sent from client is null.");
+                return BadRequest("CourseForUpdateDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the CourseForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
+            var courseEntity = _repository.CourseManagement.GetCourse(id, trackChanges: true);
+            if (courseEntity == null)
+            {
+                _logger.LogInfo($"Course with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _mapper.Map(course, courseEntity);
+            _repository.Save();
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCourse(Guid id)
+        {
+            var course = _repository.CourseManagement.GetCourse(id, trackChanges: false);
+            if (course == null)
+            {
+                _logger.LogInfo($"Course with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _repository.CourseManagement.DeleteCourse(course);
+            _repository.Save();
+
+            return NoContent();
         }
     }
 }

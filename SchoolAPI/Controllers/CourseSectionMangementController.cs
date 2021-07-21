@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace CourseSectionManagement.Controllers
+namespace SchoolAPI.Controllers
 {
     [Route("api/v1/coursesections")]
     [ApiController]

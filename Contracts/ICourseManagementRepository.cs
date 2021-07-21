@@ -8,5 +8,8 @@ namespace Contracts
     {
         IEnumerable<CourseManagement> GetAllCourses(bool trackChanges);
         CourseManagement GetCourse(Guid CourseManagementID, bool trackChanges);
+        void CreateCourse(CourseManagement courseManagement);
+        IEnumerable<CourseManagement> GetByIds(IEnumerable<Guid> ids, bool trackChanges);
+        void DeleteCourse(CourseManagement courseManagement);
     }
 }
