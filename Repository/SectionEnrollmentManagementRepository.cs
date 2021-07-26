@@ -21,5 +21,15 @@ namespace Repository
         public SectionEnrollmentManagement GetSectionEnrollment(Guid SectionID, bool trackChanges) =>
          FindByCondition(c => c.Id.Equals(SectionID), trackChanges)
         .SingleOrDefault();
+        public void CreateSection(SectionEnrollmentManagement sectionenrollmentManagement) => Create(sectionenrollmentManagement);
+
+        public IEnumerable<SectionEnrollmentManagement> GetByIds(IEnumerable<Guid> ids, bool trackChanges) =>
+            FindByCondition(x => ids.Contains(x.Id), trackChanges)
+            .ToList();
+
+        public void DeleteSection(SectionEnrollmentManagement sectionenrollmentManagement)
+        {
+            Delete(sectionenrollmentManagement);
+        }
     }
 }

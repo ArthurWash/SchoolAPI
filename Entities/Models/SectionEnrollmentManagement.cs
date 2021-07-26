@@ -10,12 +10,16 @@ namespace Entities.Models
         [Column("SectionEnrollmentID")]
         public Guid Id { get; set; }
 
+        [Required(ErrorMessage = "SectionID is a required field.")]
+        [MaxLength(9, ErrorMessage = "Maximum length for the CourseTitle is 9 characters.")]
         public string SectionID { set; get; }
 
+        [Required(ErrorMessage = "Start date is a required field.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy")]
         public DateTime StartDate { get; set; }
 
+        [Required(ErrorMessage = "End date is a required field.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy")]
         public DateTime EndDate { get; set; }

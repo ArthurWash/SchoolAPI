@@ -5,6 +5,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace SchoolAPI.Controllers
 {
@@ -29,8 +30,8 @@ namespace SchoolAPI.Controllers
             var courses = _repository.CourseManagement.GetAllCourses(trackChanges: false);
 
             var CourseDto = _mapper.Map<IEnumerable<CourseDto>>(courses);
-                //throw new Exception("Exception");
-                return Ok(CourseDto);
+            //throw new Exception("Exception");
+            return Ok(CourseDto);
         }
 
         [HttpGet("{id}", Name = "getCourseById")]
@@ -47,9 +48,9 @@ namespace SchoolAPI.Controllers
                 return Ok(CourseDto);
             }
         }
- 
+
         [HttpPost(Name = "createCourse")]
-        public IActionResult CreateCourse([FromBody]CourseForCreationDto course)
+        public IActionResult CreateCourse([FromBody] CourseForCreationDto course)
         {
             if (course == null)
             {
@@ -107,6 +108,32 @@ namespace SchoolAPI.Controllers
             }
 
             _repository.CourseManagement.DeleteCourse(course);
+            _repository.Save();
+
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public IActionResult PartiallyUpdateCourse(Guid id, [FromBody] JsonPatchDocument<CourseForUpdateDto> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+                _logger.LogError("patchDoc object sent from client is null.");
+                return BadRequest("patchDoc object is null");
+            }
+
+            var courseEntity = _repository.CourseManagement.GetCourse(id, trackChanges: true);
+            if (courseEntity == null)
+            {
+                _logger.LogInfo($"Course with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseEntity);
+
+            patchDoc.ApplyTo(courseToPatch);
+
+            _mapper.Map(courseToPatch, courseEntity);
+
             _repository.Save();
 
             return NoContent();

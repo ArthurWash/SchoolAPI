@@ -8,6 +8,10 @@ namespace Entities.DataTransferObjects
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }
-        public string SystemRoleId{ get; set; }
+        public string Email { get; set; }
+        public Boolean Status { get; set; }
+        public string SystemRoleID { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

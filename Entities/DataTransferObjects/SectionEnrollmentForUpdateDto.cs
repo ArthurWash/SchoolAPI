@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Entities.Models
+namespace Entities.DataTransferObjects
 {
-    public class CourseSectionManagement
+    public class SectionEnrollmentForUpdateDto
     {
-        [Column("CourseSectionID")]
-        public Guid Id { get; set; }
-
-        [Required(ErrorMessage = "Section is a required field.")]
-        [MaxLength(10, ErrorMessage = "Maximum length is 10 characters.")]
-        public string CourseID { get; set; }
-
+        [Required(ErrorMessage = "SectionID is a required field.")]
+        [MaxLength(9, ErrorMessage = "Maximum length for the CourseTitle is 9 characters.")]
+        public string SectionID { set; get; }
 
         [Required(ErrorMessage = "Start date is a required field.")]
         [DataType(DataType.Date)]
@@ -27,7 +23,9 @@ namespace Entities.Models
 
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
-
+        [Required(ErrorMessage = "User name is a required field.")]
+        [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
+        public Guid UserID { get; set; }
+        public string UserName { get; set; }
     }
 }

@@ -14,12 +14,24 @@ namespace Repository
         {
         }
         public IEnumerable<AssignmentManagement> GetAllAssignments(bool trackChanges) =>
-        FindAll(trackChanges)
-        .OrderBy(c => c.AssignmentTitle)
-        .ToList();
+            FindAll(trackChanges)
+            .OrderBy(c => c.AssignmentTitle)
+            .ToList();
 
-        public AssignmentManagement GetAssignment(Guid AssignmentID, bool trackChanges) =>
-         FindByCondition(c => c.Id.Equals(AssignmentID), trackChanges)
+        public AssignmentManagement GetAssignment(Guid CourseSectionID, bool trackChanges) =>
+         FindByCondition(c => c.Id.Equals(CourseSectionID), trackChanges)
         .SingleOrDefault();
+
+        public void CreateAssignment(AssignmentManagement assignment) => Create(assignment);
+
+        public IEnumerable<AssignmentManagement> GetByIds(IEnumerable<Guid> ids, bool trackChanges) =>
+            FindByCondition(c => ids.Contains(c.Id), trackChanges)
+            .ToList();
+
+        public void DeleteAssignment(AssignmentManagement assignmentManagement)
+        {
+            Delete(assignmentManagement);
+        }
+
     }
 }

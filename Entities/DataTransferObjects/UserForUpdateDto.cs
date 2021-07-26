@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Entities.Models
-{   
-    public class User
+namespace Entities.DataTransferObjects
+{
+    public class UserForUpdateDto
     {
-        [Column("UserId")]
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "Username is a required field.")]
         [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
         [MinLength(4, ErrorMessage = "Minimum length for the Username is 4 characters.")]
@@ -26,6 +23,5 @@ namespace Entities.Models
 
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
     }
 }
