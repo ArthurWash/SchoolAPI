@@ -6,3 +6,18 @@ For our project, we will be creating an API for NJIT to handle online course reg
 
 ## ERD
 ![Screen Shot 2021-06-28 at 12 50 40 PM](https://user-images.githubusercontent.com/70606671/123674296-72f99380-d80f-11eb-8005-e406b88d3d91.png)
+
+## Post Request 
+![Post Method](https://user-images.githubusercontent.com/70606671/127048950-6ed0157c-448f-42f7-aaae-109666a25876.png)
+
+## Put Request 
+![Put Method](https://user-images.githubusercontent.com/70606671/127049022-28dd493d-1c88-46c9-9b15-571214753764.png)
+![Get Request from Put](https://user-images.githubusercontent.com/70606671/127049043-d1cb266d-dd77-42e5-8b89-a8b943135069.png)
+
+## Delete Request
+![Delete Request](https://user-images.githubusercontent.com/70606671/127049068-3a2df343-1c6b-4cd4-9ded-00975a073ee5.png)
+![Get Request from Delete](https://user-images.githubusercontent.com/70606671/127049075-878b72e7-5ec6-4791-9a7c-e2750eb5d71a.png)
+
+## Patch Request
+![Patch Request](https://user-images.githubusercontent.com/70606671/127049102-984c7037-1f0c-4adc-b55a-01eb5c5d487e.png)
+![Get for patch](https://user-images.githubusercontent.com/70606671/127049109-4ef3dc50-1c90-41b7-900a-64152383929d.png)
