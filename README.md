@@ -6,3 +6,6 @@ For our project, we will be creating an API for NJIT to handle online course reg
 
 ## ERD
 ![Screen Shot 2021-06-28 at 12 50 40 PM](https://user-images.githubusercontent.com/70606671/123674296-72f99380-d80f-11eb-8005-e406b88d3d91.png)
+
+## Swagger Screenshot
+![SwaggerSupport](https://user-images.githubusercontent.com/70606671/127236601-a9fb1b07-f3ab-4759-967c-3332706328a4.png)
