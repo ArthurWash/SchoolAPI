@@ -11,6 +11,7 @@ namespace SchoolAPI.Controllers
 {
     [Route("api/v1/courses")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class CourseManagementController : ControllerBase
     {
         private readonly IRepositoryManager _repository;
